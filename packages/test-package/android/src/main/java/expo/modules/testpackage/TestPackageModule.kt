@@ -1,5 +1,6 @@
 package expo.modules.testpackage
 
+import android.util.Log
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import java.net.URL
@@ -29,11 +30,29 @@ class TestPackageModule : Module() {
 
     // Defines a JavaScript function that always returns a Promise and whose native code
     // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { value: String ->
-      // Send an event to JavaScript.
-      sendEvent("onChange", mapOf(
-        "value" to value
-      ))
+    AsyncFunction("setValueAsync") {
+      { value: String ->
+        // Send an event to JavaScript.
+        sendEvent("onChange", mapOf(
+          "value" to value
+        ))
+    }
+    }
+
+    OnCreate {
+      Log.d("TestPackageModule", "created")
+    }
+
+    OnDestroy {
+      Log.d("TestPackageModule", "destroyed")
+    }
+
+    OnStartObserving {
+      Log.d("TestPackageModule", "started observing")
+    }
+
+    OnStopObserving {
+      Log.d("TestPackageModule", "stopped observing")
     }
 
     // Enables the module to be used as a native view. Definition components that are accepted as part of

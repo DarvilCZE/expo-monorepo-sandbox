@@ -32,6 +32,26 @@ public class TestPackageModule: Module {
       ])
     }
 
+    OnCreate {
+      print("TestPackageModule created")
+    }
+
+    OnDestroy {
+      print("TestPackageModule destroyed")
+    }
+
+    OnStartObserving {
+      print("TestPackageModule started observing")
+    }
+
+    OnStopObserving {
+      print("TestPackageModule stopped observing")
+    }
+
+    OnAppContextDestroys {
+      print("TestPackageModule app context destroyed")
+    }
+
     // Enables the module to be used as a native view. Definition components that are accepted as part of the
     // view definition: Prop, Events.
     View(TestPackageView.self) {
